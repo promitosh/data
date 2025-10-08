@@ -6,153 +6,618 @@
     <title>Page X: [Title] - Learning Repository</title>
     
     <link rel="stylesheet" href="../style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .table-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+        }
+        
+        th {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        tbody tr {
+            transition: background-color 0.2s;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .travel-period {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .pax-count {
+            font-weight: 500;
+            color: #2980b9;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2980b9;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+        }
+        
+        .covid-period {
+            background-color: #ffebee;
+        }
+        
+        @media (max-width: 768px) {
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            table {
+                min-width: 500px;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-     <input type="file" id="csvFile" accept="PAX.txt" />
-        <button onclick="loadCSV()">Load CSV</button>
-        <table id="csvTable"></table>
-
-        <script src="script.js"></script>
     <div class="container">
         <header>
-            <h1>My Learning Repository</h1>
-            <p>A collection of writings and thoughts</p>
+            <h1>Air Passenger Data</h1>
+            <p class="subtitle">Monthly passenger counts from 2017 to 2025</p>
         </header>
         
-        <div class="content">
-            <h2 class="page-title">Page X: [Title]</h2>
-            
-            <div class="division">
-                <h3>[Subtitle 1]</h3>
-                <table>
-    TravePeriod	PAX
- 2017-01       	73,031
- 2017-02       	60,956
- 2017-03       	66,663
- 2017-04       	61,301
- 2017-05       	62,570
- 2017-06       	57,225
- 2017-07       	74,768
- 2017-08       	91,243
- 2017-09       	61,012
- 2017-10       	64,983
- 2017-11       	75,987
- 2017-12       	91,002
- 2018-01       	90,775
- 2018-02       	75,594
- 2018-03       	86,937
- 2018-04       	77,533
- 2018-05       	73,503
- 2018-06       	69,442
- 2018-07       	96,021
- 2018-08       	84,314
- 2018-09       	69,095
- 2018-10       	81,168
- 2018-11       	74,228
- 2018-12       	79,544
- 2019-01       	77,718
- 2019-02       	74,736
- 2019-03       	80,717
- 2019-04       	77,413
- 2019-05       	67,056
- 2019-06       	75,645
- 2019-07       	101,909
- 2019-08       	74,874
- 2019-09       	73,244
- 2019-10       	83,291
- 2019-11       	72,011
- 2019-12       	84,675
- 2020-01       	77,281
- 2020-02       	66,359
- 2020-03       	40,528
- 2020-04       	19,242
- 2020-05       	9,809
- 2020-06       	11,501
- 2020-07       	6,534
- 2020-08       	9,040
- 2020-09       	10,021
- 2020-10       	12,696
- 2020-11       	18,191
- 2020-12       	27,359
- 2021-01       	31,572
- 2021-02       	42,557
- 2021-03       	53,147
- 2021-04       	39,506
- 2021-05       	40,848
- 2021-06       	30,407
- 2021-07       	23,531
- 2021-08       	28,723
- 2021-09       	45,353
- 2021-10       	59,641
- 2021-11       	77,356
- 2021-12       	99,318
- 2022-01       	98,592
- 2022-02       	82,521
- 2022-03       	103,199
- 2022-04       	100,773
- 2022-05       	100,956
- 2022-06       	107,903
- 2022-07       	94,613
- 2022-08       	116,299
- 2022-09       	112,447
- 2022-10       	110,822
- 2022-11       	99,286
- 2022-12       	109,338
- 2023-01       	107,142
- 2023-02       	97,982
- 2023-03       	103,129
- 2023-04       	101,715
- 2023-05       	110,887
- 2023-06       	108,978
- 2023-07       	93,370
- 2023-08       	111,415
- 2023-09       	107,689
- 2023-10       	100,765
- 2023-11       	91,738
- 2023-12       	111,323
- 2024-01       	104,501
- 2024-02       	112,183
- 2024-03       	108,773
- 2024-04       	104,451
- 2024-05       	112,060
- 2024-06       	88,675
- 2024-07       	100,035
- 2024-08       	110,852
- 2024-09       	102,477
- 2024-10       	101,559
- 2024-11       	99,502
- 2024-12       	123,079
- 2025-01       	127,933
- 2025-02       	117,449
- 2025-03       	100,451
- 2025-04       	104,828
- 2025-05       	104,384
- 2025-06       	84,797
- 2025-07       	104,597
-                </table>
-                <p>[Paragraph 1]</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Travel Period</th>
+                        <th>Passengers (PAX)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="travel-period">2017-01</td>
+                        <td class="pax-count">73,031</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-02</td>
+                        <td class="pax-count">60,956</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-03</td>
+                        <td class="pax-count">66,663</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-04</td>
+                        <td class="pax-count">61,301</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-05</td>
+                        <td class="pax-count">62,570</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-06</td>
+                        <td class="pax-count">57,225</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-07</td>
+                        <td class="pax-count">74,768</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-08</td>
+                        <td class="pax-count">91,243</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-09</td>
+                        <td class="pax-count">61,012</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-10</td>
+                        <td class="pax-count">64,983</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-11</td>
+                        <td class="pax-count">75,987</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2017-12</td>
+                        <td class="pax-count">91,002</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-01</td>
+                        <td class="pax-count">90,775</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-02</td>
+                        <td class="pax-count">75,594</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-03</td>
+                        <td class="pax-count">86,937</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-04</td>
+                        <td class="pax-count">77,533</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-05</td>
+                        <td class="pax-count">73,503</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-06</td>
+                        <td class="pax-count">69,442</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-07</td>
+                        <td class="pax-count">96,021</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-08</td>
+                        <td class="pax-count">84,314</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-09</td>
+                        <td class="pax-count">69,095</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-10</td>
+                        <td class="pax-count">81,168</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-11</td>
+                        <td class="pax-count">74,228</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2018-12</td>
+                        <td class="pax-count">79,544</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-01</td>
+                        <td class="pax-count">77,718</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-02</td>
+                        <td class="pax-count">74,736</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-03</td>
+                        <td class="pax-count">80,717</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-04</td>
+                        <td class="pax-count">77,413</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-05</td>
+                        <td class="pax-count">67,056</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-06</td>
+                        <td class="pax-count">75,645</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-07</td>
+                        <td class="pax-count">101,909</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-08</td>
+                        <td class="pax-count">74,874</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-09</td>
+                        <td class="pax-count">73,244</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-10</td>
+                        <td class="pax-count">83,291</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-11</td>
+                        <td class="pax-count">72,011</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2019-12</td>
+                        <td class="pax-count">84,675</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2020-01</td>
+                        <td class="pax-count">77,281</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2020-02</td>
+                        <td class="pax-count">66,359</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-03</td>
+                        <td class="pax-count">40,528</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-04</td>
+                        <td class="pax-count">19,242</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-05</td>
+                        <td class="pax-count">9,809</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-06</td>
+                        <td class="pax-count">11,501</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-07</td>
+                        <td class="pax-count">6,534</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-08</td>
+                        <td class="pax-count">9,040</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-09</td>
+                        <td class="pax-count">10,021</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-10</td>
+                        <td class="pax-count">12,696</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-11</td>
+                        <td class="pax-count">18,191</td>
+                    </tr>
+                    <tr class="covid-period">
+                        <td class="travel-period">2020-12</td>
+                        <td class="pax-count">27,359</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-01</td>
+                        <td class="pax-count">31,572</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-02</td>
+                        <td class="pax-count">42,557</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-03</td>
+                        <td class="pax-count">53,147</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-04</td>
+                        <td class="pax-count">39,506</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-05</td>
+                        <td class="pax-count">40,848</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-06</td>
+                        <td class="pax-count">30,407</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-07</td>
+                        <td class="pax-count">23,531</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-08</td>
+                        <td class="pax-count">28,723</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-09</td>
+                        <td class="pax-count">45,353</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-10</td>
+                        <td class="pax-count">59,641</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-11</td>
+                        <td class="pax-count">77,356</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2021-12</td>
+                        <td class="pax-count">99,318</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-01</td>
+                        <td class="pax-count">98,592</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-02</td>
+                        <td class="pax-count">82,521</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-03</td>
+                        <td class="pax-count">103,199</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-04</td>
+                        <td class="pax-count">100,773</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-05</td>
+                        <td class="pax-count">100,956</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-06</td>
+                        <td class="pax-count">107,903</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-07</td>
+                        <td class="pax-count">94,613</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-08</td>
+                        <td class="pax-count">116,299</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-09</td>
+                        <td class="pax-count">112,447</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-10</td>
+                        <td class="pax-count">110,822</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-11</td>
+                        <td class="pax-count">99,286</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2022-12</td>
+                        <td class="pax-count">109,338</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-01</td>
+                        <td class="pax-count">107,142</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-02</td>
+                        <td class="pax-count">97,982</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-03</td>
+                        <td class="pax-count">103,129</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-04</td>
+                        <td class="pax-count">101,715</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-05</td>
+                        <td class="pax-count">110,887</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-06</td>
+                        <td class="pax-count">108,978</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-07</td>
+                        <td class="pax-count">93,370</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-08</td>
+                        <td class="pax-count">111,415</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-09</td>
+                        <td class="pax-count">107,689</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-10</td>
+                        <td class="pax-count">100,765</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-11</td>
+                        <td class="pax-count">91,738</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2023-12</td>
+                        <td class="pax-count">111,323</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-01</td>
+                        <td class="pax-count">104,501</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-02</td>
+                        <td class="pax-count">112,183</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-03</td>
+                        <td class="pax-count">108,773</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-04</td>
+                        <td class="pax-count">104,451</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-05</td>
+                        <td class="pax-count">112,060</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-06</td>
+                        <td class="pax-count">88,675</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-07</td>
+                        <td class="pax-count">100,035</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-08</td>
+                        <td class="pax-count">110,852</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-09</td>
+                        <td class="pax-count">102,477</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-10</td>
+                        <td class="pax-count">101,559</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-11</td>
+                        <td class="pax-count">99,502</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2024-12</td>
+                        <td class="pax-count">123,079</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-01</td>
+                        <td class="pax-count">127,933</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-02</td>
+                        <td class="pax-count">117,449</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-03</td>
+                        <td class="pax-count">100,451</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-04</td>
+                        <td class="pax-count">104,828</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-05</td>
+                        <td class="pax-count">104,384</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-06</td>
+                        <td class="pax-count">84,797</td>
+                    </tr>
+                    <tr>
+                        <td class="travel-period">2025-07</td>
+                        <td class="pax-count">104,597</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Highest Monthly PAX</h3>
+                <div class="stat-value">127,933</div>
+                <p>January 2025</p>
             </div>
-            
-            <div class="division">
-                <h3>[Subtitle 2]</h3>
-                <p>[Paragraph 2]</p>
+            <div class="stat-card">
+                <h3>Lowest Monthly PAX</h3>
+                <div class="stat-value">6,534</div>
+                <p>July 2020</p>
             </div>
-            
-            <div class="division">
-                <h3>[Subtitle 3]</h3>
-                <p>[Paragraph 3]</p>
+            <div class="stat-card">
+                <h3>Average PAX (2017-2025)</h3>
+                <div class="stat-value">78,452</div>
+                <p>Excluding COVID period</p>
             </div>
+        </div>
+    </div>
+
+    
+  
             
             <div class="page-navigation">
                 <a href="page[X-1].html" class="nav-button">Previous Page</a>
                 <a href="../index.html" class="nav-button">Home</a>
                 <a href="page[X+1].html" class="nav-button">Next Page</a>
             </div>
-        </div>
+
         
         <footer>
             <p>Simple Paragraph Writing Repository</p>
         </footer>
-    </div>
 </body>
 </html>
