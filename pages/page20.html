@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page X: [Title] - Learning Repository</title>
+     <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 8px;
+            }
+        </style>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+     <input type="file" id="csvFile" accept="PAX.txt" />
+        <button onclick="loadCSV()">Load CSV</button>
+        <table id="csvTable"></table>
+
+        <script src="script.js"></script>
     <div class="container">
         <header>
             <h1>My Learning Repository</h1>
