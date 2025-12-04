@@ -1,7 +1,21 @@
-Part 2: Get the Raw File Link
-
+How to 
+Part 2:
+Get the Raw File Link
 Open BG305.xlsx inside your repository
-
-At the top-right → click "Download raw file" or “Raw”
-
+At the top-right → click/place cursor on “Raw”
 Copy the raw GitHub link, which will look like:
+https://github.com/promitosh/data/raw/refs/heads/main/BG305.xlsx
+
+Part 3
+Connect Google Colab to Your GitHub File
+Option A: Directly load the file using pandas
+Open Google Colab → New Notebook → run:
+
+import pandas as pd
+
+url = "https://raw.githubusercontent.com/username/my-data-files/main/BG305.xlsx"
+url= "https://github.com/promitosh/data/raw/refs/heads/main/BG305.xlsx"
+
+
+df = pd.read_excel(url)
+df.head()
